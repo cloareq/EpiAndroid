@@ -55,6 +55,5 @@ public class MainActivity extends ActionBarActivity {
         request.execute(login, password);
         String result = request.get();
         System.out.println(result);
-        System.out.println("toto");
     }
 }
