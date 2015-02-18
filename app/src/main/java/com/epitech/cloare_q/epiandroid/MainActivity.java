@@ -1,5 +1,6 @@
 package com.epitech.cloare_q.epiandroid;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -7,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 
@@ -16,8 +18,7 @@ import service.api;
 
 
 public class MainActivity extends ActionBarActivity {
-    private String login = null;
-    private String password = null;
+    final String EXTRA_TOKEN = "user_token";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +53,21 @@ public class MainActivity extends ActionBarActivity {
         api request = new api();
         String login = ((EditText)findViewById(R.id.loginLogin)).getText().toString();
         String password = ((EditText)findViewById(R.id.loginPassword)).getText().toString();
+
+        if (login.equals("") || password.equals("")) {
+            Toast.makeText(MainActivity.this,
+                    R.string.email_or_password_empty,
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
         request.execute(login, password);
         String result = request.get();
         System.out.println(result);
-        System.out.println("dodo");
+
+
+        Intent intent = new Intent(MainActivity.this, home.class);
+        intent.putExtra(EXTRA_TOKEN, result);
+        startActivity(intent);
+
     }
 }
