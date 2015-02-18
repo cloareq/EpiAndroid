@@ -12,5 +12,6 @@
     <string name="email">Email</string>
     <string name="pwd">Password</string>
     <string name="btnRegister">Register</string>
+    <string name="email_or_password_empty">Les deux champs sont obligatoires !</string>
 
 </resources>
