@@ -13,6 +13,8 @@ import org.apache.http.util.EntityUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import service.paramUrl;
+
 public class api extends AsyncTask<String, Integer, String>
 {
 
@@ -30,20 +32,23 @@ public class api extends AsyncTask<String, Integer, String>
 
     @Override
     protected String doInBackground(String... arg) {
+        paramUrl param = new paramUrl();
 
+        param.setParam(arg);
+        param.setRequestName(arg[arg.length - 1]);
+        param.setRequestType(arg[arg.length]);
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost("http://epitech-api.herokuapp.com/login");
-
-        List<BasicNameValuePair> connection = new ArrayList<>();
-        connection.add(new BasicNameValuePair("login", arg[0]));
-        connection.add(new BasicNameValuePair("password", arg[1]));
-        try {
-            httppost.setEntity(new UrlEncodedFormEntity(connection));
-            HttpResponse res = httpclient.execute(httppost);
-            String response =  EntityUtils.toString(res.getEntity());
-            return response;
+        String url = "http://epitech-api.herokuapp.com/" + param.getRequestName();
+        if (param.getRequestType().equals("post")) {
+            HttpPost httppost = new HttpPost(url);
+            try {
+                httppost.setEntity(new UrlEncodedFormEntity(param.getParam()));
+                HttpResponse res = httpclient.execute(httppost);
+                return EntityUtils.toString(res.getEntity());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        catch (Exception e) {System.out.println(e);}
         return null;
     }
 
