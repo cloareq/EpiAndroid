@@ -16,4 +16,12 @@
         android:text="Welcome User"
         android:textSize="25dip" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="getLogTime"
+        android:id="@+id/logTime"
+        android:onClick="logTime"
+        android:layout_gravity="center" />
+
 </FrameLayout>

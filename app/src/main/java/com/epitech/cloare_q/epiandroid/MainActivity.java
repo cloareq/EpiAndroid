@@ -15,6 +15,7 @@ import service.api;
 
 
 public class MainActivity extends ActionBarActivity {
+
     final String EXTRA_TOKEN = "user_token";
 
 

@@ -17,6 +17,7 @@ import android.widget.TextView;
  */
 public class home extends Activity {
     final String EXTRA_TOKEN = "user_token";
+    private String token = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,8 +28,8 @@ public class home extends Activity {
         TextView tokenDisplay = (TextView) findViewById(R.id.showToken);
 
         if (intent != null) {
-            tokenDisplay.setText(intent.getStringExtra(EXTRA_TOKEN));
+            token = intent.getStringExtra(EXTRA_TOKEN);
+            tokenDisplay.setText(token);
         }
     }
-
 }
