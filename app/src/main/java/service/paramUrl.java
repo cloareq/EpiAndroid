@@ -2,6 +2,7 @@ package service;
 
 import org.apache.http.message.BasicNameValuePair;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class paramUrl {
@@ -9,8 +10,9 @@ public class paramUrl {
     private String requestName = null;
     private String requestType = null;
 
-    private void setParam(String... arg) {
+    public void setParam(String... arg) {
         int i = 0;
+        param = new ArrayList<>();
         while (i < (arg.length - 2))
         {
             param.add(new BasicNameValuePair(arg[i], arg[i+1]));
@@ -18,23 +20,23 @@ public class paramUrl {
         }
     }
 
-    private List<BasicNameValuePair> getParam() {
+    public List<BasicNameValuePair> getParam() {
         return param;
     }
 
-    private void setRequestName(String req) {
+    public void setRequestName(String req) {
         requestName = req;
     }
 
-    private String getRequestName(){
+    public String getRequestName(){
         return requestName;
     }
 
-    private void setRequestType(String req) {
+    public void setRequestType(String req) {
         requestType = req;
     }
 
-    private String getRequestType() {
+    public String getRequestType() {
         return requestType;
     }
 }
