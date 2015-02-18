@@ -1,5 +1,6 @@
 package com.epitech.cloare_q.epiandroid;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,17 +9,26 @@ import android.view.MenuItem;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.TextView;
+
 /**
  *
  * Home Screen Activity
  */
 public class home extends Activity {
+    final String EXTRA_TOKEN = "user_token";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Displays Home Screen
         setContentView(R.layout.home);
+
+        Intent intent = getIntent();
+        TextView tokenDisplay = (TextView) findViewById(R.id.showToken);
+
+        if (intent != null) {
+            tokenDisplay.setText(intent.getStringExtra(EXTRA_TOKEN));
+        }
     }
 
 }

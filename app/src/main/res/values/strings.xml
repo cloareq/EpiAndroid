@@ -13,5 +13,6 @@
     <string name="pwd">Password</string>
     <string name="btnRegister">Register</string>
     <string name="email_or_password_empty">Les deux champs sont obligatoires !</string>
+    <string name="error_login">Login ou mot de passe incorrect !</string>
 
 </resources>
