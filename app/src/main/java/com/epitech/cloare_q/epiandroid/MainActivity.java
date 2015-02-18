@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import service.api;
@@ -19,6 +20,7 @@ import service.api;
 
 public class MainActivity extends ActionBarActivity {
     final String EXTRA_TOKEN = "user_token";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

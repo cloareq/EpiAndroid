@@ -3,6 +3,7 @@ package service;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class paramUrl {
