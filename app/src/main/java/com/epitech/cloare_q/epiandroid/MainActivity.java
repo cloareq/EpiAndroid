@@ -64,6 +64,12 @@ public class MainActivity extends ActionBarActivity {
         String result = request.get();
         System.out.println(result);
 
+        if (result.contains("error")) {
+            Toast.makeText(MainActivity.this,
+                    R.string.error_login,
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         Intent intent = new Intent(MainActivity.this, home.class);
         intent.putExtra(EXTRA_TOKEN, result);
