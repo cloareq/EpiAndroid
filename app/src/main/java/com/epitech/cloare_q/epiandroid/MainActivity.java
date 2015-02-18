@@ -60,7 +60,7 @@ public class MainActivity extends ActionBarActivity {
                     Toast.LENGTH_SHORT).show();
             return;
         }
-        request.execute(login, password);
+        request.execute("login", login, "password", password, "login", "post");
         String result = request.get();
         System.out.println(result);
 

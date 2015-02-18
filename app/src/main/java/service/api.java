@@ -35,8 +35,11 @@ public class api extends AsyncTask<String, Integer, String>
         paramUrl param = new paramUrl();
 
         param.setParam(arg);
-        param.setRequestName(arg[arg.length - 1]);
-        param.setRequestType(arg[arg.length]);
+        param.setRequestName(arg[arg.length - 2]);
+        param.setRequestType(arg[arg.length - 1]);
+        System.out.println("ici");
+        System.out.println(param.getParam());
+        System.out.println("apres");
         HttpClient httpclient = new DefaultHttpClient();
         String url = "http://epitech-api.herokuapp.com/" + param.getRequestName();
         if (param.getRequestType().equals("post")) {

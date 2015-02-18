@@ -13,7 +13,7 @@ public class paramUrl {
     public void setParam(String... arg) {
         int i = 0;
         param = new ArrayList<>();
-        while (i < (arg.length - 2))
+        while (i < (arg.length - 3))
         {
             param.add(new BasicNameValuePair(arg[i], arg[i+1]));
             i += 2;
