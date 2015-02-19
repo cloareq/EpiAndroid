@@ -3,6 +3,7 @@ package com.epitech.cloare_q.epiandroid;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
@@ -12,10 +13,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
+
+import service.api;
+
 public class home extends Activity {
     private String[] menuList;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
+    final String EXTRA_TOKEN = "user_token";
+    private String token = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +38,10 @@ public class home extends Activity {
         // Set the list's click listener
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
+        // Test lib gson recup du temps de log
+        Intent intent = getIntent();
+        token = intent.getStringExtra(EXTRA_TOKEN);
+        System.out.println(token);
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
@@ -38,6 +49,7 @@ public class home extends Activity {
         public void onItemClick(AdapterView parent, View view, int position, long id) {
             selectItem(position);
         }
+        Gson gson = new Gson();
     }
 
     /** Swaps fragments in the main content view */

@@ -35,7 +35,6 @@ public class MainActivity extends Activity {
         }
         request.execute("login", login, "password", password, "login", "post");
         String result = request.get();
-        System.out.println(result);
 
         if (result.contains("error")) {
             Toast.makeText(MainActivity.this,
