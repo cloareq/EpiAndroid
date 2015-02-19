@@ -39,6 +39,13 @@ public class home extends Activity {
         // Set the list's click listener
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
+        //lancement du fragment Home
+        Fragment fragment = new FragHome();
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, fragment)
+                    .commit();
+
         // Test lib gson recup du temps de log
         Intent intent = getIntent();
         token = intent.getStringExtra(EXTRA_TOKEN);
