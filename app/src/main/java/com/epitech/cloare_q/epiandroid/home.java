@@ -16,6 +16,10 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import beans.HomeBeans;
 import service.api;
 
 public class home extends Activity {
@@ -24,7 +28,6 @@ public class home extends Activity {
     private ListView mDrawerList;
     final String EXTRA_TOKEN = "user_token";
     private String token = null;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,22 +41,25 @@ public class home extends Activity {
         mDrawerList.setAdapter(new ArrayAdapter<>(this, R.layout.drawer_list_item, menuList));
         // Set the list's click listener
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-        // Recup token
+        // take token
         Intent intent = getIntent();
-        token = intent.getStringExtra(EXTRA_TOKEN);
-        //lancement du fragment Home
+        String tmpToken = intent.getStringExtra(EXTRA_TOKEN);
+        try {
+
+            JSONObject json = new JSONObject(tmpToken);
+            token = json.getString("token");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        // Home fragment
         Fragment fragment = new FragHome();
         Bundle args = new Bundle();
-        args.putString("token", getToken());
+        args.putString("token", token);
         fragment.setArguments(args);
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame, fragment)
                     .commit();
-    }
-
-    public String getToken(){
-        return token;
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
@@ -66,16 +72,20 @@ public class home extends Activity {
     //LES FRAGMENTS
 
     public static class FragHome extends Fragment {
-        private String Token;
-
+        private String token;
+        private String logTime;
+        private String picture;
+        private HomeBeans hb;
         public FragHome() {
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            String arg = this.getArguments().toString();
-            System.out.println(arg);
+            Bundle arg = this.getArguments();
+            token = arg.getString("token");
+            hb = new HomeBeans(token);
+
             return inflater.inflate(R.layout.fragment_home, container, false);
         }
     }
@@ -124,12 +134,12 @@ public class home extends Activity {
     private void selectItem(int position) {
         // Create a new fragment and specify the planet to show based on position
         Fragment fragment = null;
+        Bundle args = new Bundle();
+        args.putString("token", token);
+        fragment.setArguments(args);
         switch (position) {
             case 0:
                 fragment = new FragHome();
-                Bundle args = new Bundle();
-                args.putString("token", getToken());
-                fragment.setArguments(args);
                 break;
             case 1:
                 fragment = new FragPlanning();
@@ -162,6 +172,4 @@ public class home extends Activity {
         setTitle(menuList[position]);
         mDrawerLayout.closeDrawer(mDrawerList);
     }
-
-
 }
