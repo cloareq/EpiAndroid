@@ -50,7 +50,6 @@ public class home extends Activity {
         Intent intent = getIntent();
         token = intent.getStringExtra(EXTRA_TOKEN);
         System.out.println(token);
-        System.out.println("wesh");
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
