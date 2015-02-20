@@ -1,6 +1,7 @@
 package com.epitech.cloare_q.epiandroid;
 
 import android.app.Fragment;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ public class fragments {
         TextView nameText;
         TextView logText;
         private HomeBeans hb;
+        ImageView ppicture;
 
         public FragHome() {
         }
@@ -46,6 +49,10 @@ public class fragments {
             int finalLog = (int) Math.round(time);
             logText.setText(Integer.toString(finalLog));
 
+
+            ppicture = (ImageView) homeView.findViewById(R.id.profilePicture);
+            Bitmap p = hb.getImage();
+            ppicture.setImageBitmap(p);
 
             return homeView;
         }

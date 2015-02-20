@@ -22,5 +22,6 @@
         <item>Token</item>
         <item>Grades</item>
     </string-array>
+    <color name="black">#000000</color>
 
 </resources>
