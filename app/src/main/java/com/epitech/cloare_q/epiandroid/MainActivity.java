@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
             return;
         }
 
-        Intent intent = new Intent(MainActivity.this, home.class);
+        Intent intent = new Intent(MainActivity.this, Home.class);
         intent.putExtra(EXTRA_TOKEN, result);
         startActivity(intent);
 
