@@ -38,18 +38,22 @@ public class home extends Activity {
         mDrawerList.setAdapter(new ArrayAdapter<>(this, R.layout.drawer_list_item, menuList));
         // Set the list's click listener
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
+        // Recup token
+        Intent intent = getIntent();
+        token = intent.getStringExtra(EXTRA_TOKEN);
         //lancement du fragment Home
         Fragment fragment = new FragHome();
+        Bundle args = new Bundle();
+        args.putString("token", getToken());
+        fragment.setArguments(args);
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame, fragment)
                     .commit();
+    }
 
-        // Test lib gson recup du temps de log
-        Intent intent = getIntent();
-        token = intent.getStringExtra(EXTRA_TOKEN);
-        System.out.println(token);
+    public String getToken(){
+        return token;
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
@@ -57,12 +61,12 @@ public class home extends Activity {
         public void onItemClick(AdapterView parent, View view, int position, long id) {
             selectItem(position);
         }
-        Gson gson = new Gson();
     }
 
     //LES FRAGMENTS
 
     public static class FragHome extends Fragment {
+        private String Token;
 
         public FragHome() {
         }
@@ -70,7 +74,8 @@ public class home extends Activity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-
+            String arg = this.getArguments().toString();
+            System.out.println(arg);
             return inflater.inflate(R.layout.fragment_home, container, false);
         }
     }
@@ -96,7 +101,6 @@ public class home extends Activity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-
             return inflater.inflate(R.layout.fragment_token, container, false);
         }
     }
@@ -123,6 +127,9 @@ public class home extends Activity {
         switch (position) {
             case 0:
                 fragment = new FragHome();
+                Bundle args = new Bundle();
+                args.putString("token", getToken());
+                fragment.setArguments(args);
                 break;
             case 1:
                 fragment = new FragPlanning();
