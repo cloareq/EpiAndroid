@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import beans.HomeBeans;
@@ -21,18 +22,32 @@ public class fragments {
         private String token;
         private String logTime;
         private String picture;
+        private String name;
+        TextView nameText;
+        TextView logText;
         private HomeBeans hb;
+
         public FragHome() {
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            final View homeView = inflater.inflate(R.layout.fragment_home, container, false);
             Bundle arg = this.getArguments();
             token = arg.getString("token");
             hb = new HomeBeans(token);
+            name = hb.getName();
+            logTime = hb.getLogTime();
+            nameText = (TextView) homeView.findViewById(R.id.txtName);
+            nameText.setText(name);
+            logText = (TextView) homeView.findViewById(R.id.txtLog);
+            Double time = Double.parseDouble(logTime);
+            int finalLog = (int) Math.round(time);
+            logText.setText(Integer.toString(finalLog));
 
-            return inflater.inflate(R.layout.fragment_home, container, false);
+
+            return homeView;
         }
     }
 

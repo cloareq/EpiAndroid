@@ -61,7 +61,9 @@ public class HomeBeans {
 
     public String getLogTime() { return logTime;}
 
-    public String picture(){
+    public String getPicture(){
         return picture;
     }
+
+    public String getName () {return name;}
 }
