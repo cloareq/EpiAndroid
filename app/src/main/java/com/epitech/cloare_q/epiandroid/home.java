@@ -7,20 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.google.gson.Gson;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import beans.HomeBeans;
-import service.api;
 
 public class home extends Activity {
     private String[] menuList;
@@ -52,7 +45,7 @@ public class home extends Activity {
             e.printStackTrace();
         }
         // Home fragment
-        Fragment fragment = new FragHome();
+        Fragment fragment = new fragments.FragHome();
         Bundle args = new Bundle();
         args.putString("token", token);
         fragment.setArguments(args);
@@ -71,62 +64,6 @@ public class home extends Activity {
 
     //LES FRAGMENTS
 
-    public static class FragHome extends Fragment {
-        private String token;
-        private String logTime;
-        private String picture;
-        private HomeBeans hb;
-        public FragHome() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            Bundle arg = this.getArguments();
-            token = arg.getString("token");
-            hb = new HomeBeans(token);
-
-            return inflater.inflate(R.layout.fragment_home, container, false);
-        }
-    }
-
-    public static class FragPlanning extends Fragment {
-
-        public FragPlanning() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-
-            return inflater.inflate(R.layout.fragment_planning, container, false);
-        }
-    }
-
-    public static class FragToken extends Fragment {
-
-        public FragToken() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            return inflater.inflate(R.layout.fragment_token, container, false);
-        }
-    }
-
-    public static class FragGrades extends Fragment {
-
-        public FragGrades() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-
-            return inflater.inflate(R.layout.fragment_grades, container, false);
-        }
-    }
 
 
 
@@ -136,21 +73,25 @@ public class home extends Activity {
         Fragment fragment = null;
         Bundle args = new Bundle();
         args.putString("token", token);
-        fragment.setArguments(args);
         switch (position) {
             case 0:
-                fragment = new FragHome();
+                fragment = new fragments.FragHome();
+                fragment.setArguments(args);
                 break;
             case 1:
-                fragment = new FragPlanning();
+                fragment = new fragments.FragPlanning();
+                fragment.setArguments(args);
                 break;
             case 2:
-                fragment = new FragToken();
+                fragment = new fragments.FragToken();
+                fragment.setArguments(args);
                 break;
             case 3 :
-                fragment = new FragGrades();
+                fragment = new fragments.FragGrades();
+                fragment.setArguments(args);
                 break;
         }
+
         //Fragment fragment = new EpiFrag();
         //Bundle args = new Bundle();
         //args.putInt(EpiFrag.ARG_MENU_NUMBER, position);
