@@ -7,13 +7,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import beans.HomeBeans;
+import service.api;
 
 public class home extends Activity {
     private String[] menuList;
@@ -86,16 +93,11 @@ public class home extends Activity {
                 fragment = new fragments.FragToken();
                 fragment.setArguments(args);
                 break;
-            case 3 :
+            case 3:
                 fragment = new fragments.FragGrades();
                 fragment.setArguments(args);
                 break;
-        }
-
-        //Fragment fragment = new EpiFrag();
-        //Bundle args = new Bundle();
-        //args.putInt(EpiFrag.ARG_MENU_NUMBER, position);
-        //fragment.setArguments(args);
+          }
 
         // Insert the fragment by replacing any existing fragment
             if (fragment != null) {
