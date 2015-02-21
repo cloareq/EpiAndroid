@@ -16,7 +16,8 @@
     <string name="error_login">Login ou mot de passe incorrect !</string>
     <string name="enter_token">Rentrez votre token</string>
     <string name="validate_button">Valider</string>
-    <string name="log_label">Temps de log</string>
+    <string name="log_label">Votre temps de log est de :</string>
+    <string name="welcome_label">Bonjour</string>
     <string-array name="menu_array">
         <item>Home</item>
         <item>Planning</item>
