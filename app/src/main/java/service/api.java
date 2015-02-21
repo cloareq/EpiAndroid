@@ -3,6 +3,7 @@ package service;
 import android.os.AsyncTask;
 
 import org.apache.commons.logging.Log;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -12,8 +13,10 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -46,18 +49,12 @@ public class api extends AsyncTask<String, Integer, String>
             HttpPost httppost = new HttpPost(url);
             try {
                 httppost.setEntity(new UrlEncodedFormEntity(param.getParam()));
-                HttpResponse res = httpclient.execute(httppost);
+                HttpResponse res = httpclient.execute
+                        (httppost);
                 return EntityUtils.toString(res.getEntity());
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else try {
-            HttpResponse response = httpclient.execute(new HttpGet(url));
-            System.out.println("ICICICICICICICICI");
-            System.out.println(EntityUtils.toString(response.getEntity()));
-            return EntityUtils.toString(response.getEntity());
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return null;
     }

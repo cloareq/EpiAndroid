@@ -5,14 +5,11 @@ import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
+import service.ApiGet;
 import service.api;
 
-/**
- * Created by Dodo on 20/02/2015.
- */
 public class GradesBeans {
     private String token;
-    private api request;
     private String ret;
     private String title;
     private String finalGrade;
@@ -20,10 +17,12 @@ public class GradesBeans {
 
     public GradesBeans(String t) {
         token = t;
-        request = new api();
-        request.execute("token", token, "marks", "get");
+        ApiGet request = new ApiGet();
+        String url = "http://epitech-api.herokuapp.com/marks?token=" + token;
+        request.execute(url);
         try {
             ret = request.get();
+            System.out.println("REEEEEEET" + ret);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
