@@ -1,14 +1,11 @@
 package beans;
 
-import android.graphics.Bitmap;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
-import service.ImgDownloader;
 import service.api;
 
 public class HomeBeans {
@@ -16,14 +13,12 @@ public class HomeBeans {
     private String logTime;
     private String picture;
     private String name;
+    private api request;
     private String ret;
 
-    private Bitmap image;
-
     public HomeBeans(String t) {
-
         token = t;
-        api request = new api();
+        request = new api();
         request.execute("token", token, "infos", "post");
         try {
             ret = request.get();
@@ -32,7 +27,6 @@ public class HomeBeans {
         }
         requestLogTime();
         requestPicture();
-        requestBitmap();
     }
 
     public void requestLogTime() {
@@ -51,19 +45,8 @@ public class HomeBeans {
             JSONObject infos = json.getJSONObject("infos");
             picture = "https://cdn.local.epitech.eu/userprofil/" + infos.getString("picture");
             name = infos.getString("title");
+            System.out.println("picture = " + picture  + "name = " + name);
         } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void requestBitmap() {
-        ImgDownloader ppicture;
-        ppicture = new ImgDownloader();
-        ppicture.execute(picture);
-        try {
-            image = ppicture.get();
-
-        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
     }
@@ -83,6 +66,4 @@ public class HomeBeans {
     }
 
     public String getName () {return name;}
-
-    public Bitmap getImage() {return image;}
 }

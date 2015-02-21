@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import beans.HomeBeans;
+import beans.GradesBeans;
 
 /**
  * Created by Dodo on 20/02/2015.
@@ -116,14 +117,21 @@ public class fragments {
 
     public static class FragGrades extends Fragment {
 
+        private GradesBeans hb;
+        private String token;
+
         public FragGrades() {
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            final View gradeView = inflater.inflate(R.layout.fragment_grades, container, false);
+            Bundle arg = this.getArguments();
+            token = arg.getString("token");
+            hb = new GradesBeans(token);
 
-            return inflater.inflate(R.layout.fragment_grades, container, false);
+            return gradeView;
         }
     }
 }

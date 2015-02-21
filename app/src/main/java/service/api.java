@@ -2,12 +2,20 @@ package service;
 
 import android.os.AsyncTask;
 
+import org.apache.commons.logging.Log;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class api extends AsyncTask<String, Integer, String>
 {
@@ -33,6 +41,7 @@ public class api extends AsyncTask<String, Integer, String>
         param.setRequestType(arg[arg.length - 1]);
         HttpClient httpclient = new DefaultHttpClient();
         String url = "http://epitech-api.herokuapp.com/" + param.getRequestName();
+
         if (param.getRequestType().equals("post")) {
             HttpPost httppost = new HttpPost(url);
             try {
@@ -42,6 +51,13 @@ public class api extends AsyncTask<String, Integer, String>
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else try {
+            HttpResponse response = httpclient.execute(new HttpGet(url));
+            System.out.println("ICICICICICICICICI");
+            System.out.println(EntityUtils.toString(response.getEntity()));
+            return EntityUtils.toString(response.getEntity());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }
