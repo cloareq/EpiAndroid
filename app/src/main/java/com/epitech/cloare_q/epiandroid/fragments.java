@@ -103,16 +103,6 @@ public class fragments {
             text = input_text.getText().toString();
             Toast.makeText(getActivity().getApplicationContext(), "fini", Toast.LENGTH_SHORT).show();
         }
-
-        /*public FragToken() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-
-            return inflater.inflate(R.layout.fragment_token, container, false);
-        }*/
     }
 
     public static class FragGrades extends Fragment {

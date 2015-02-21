@@ -8,7 +8,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_centerHorizontal="true"
-    android:layout_marginTop="25dp"
+    android:layout_marginTop="50dp"
     android:textSize="16dp"
     android:textColor="#ffffffff"
     />
@@ -17,10 +17,10 @@
         android:id="@+id/txtLog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/txtName"
         android:textSize="16dp"
-        android:layout_marginTop="40dp" />
+        android:layout_marginTop="164dp"
+        android:layout_below="@+id/txtName"
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -29,5 +29,16 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/log_label"
+        android:id="@+id/textView"
+        android:layout_marginTop="140dp"
+        android:layout_below="@+id/txtName"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
