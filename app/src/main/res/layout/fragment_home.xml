@@ -3,6 +3,16 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background = "#2980b9">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/welcome_label"
+        android:id="@+id/txtWelcomeLabel"
+        android:layout_marginTop="25dp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -10,16 +20,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/welcome_label"
-        android:id="@+id/txtWelcomeLabel"
-        android:layout_marginTop="50dp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/txtName"
@@ -36,10 +36,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/label_alert"
+        android:id="@+id/txtAlertLabel"
+        android:layout_marginTop="75dp"
+        android:layout_below="@+id/txtName"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/txtAlert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:text="@string/txt_alerte"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/txtAlertLabel"
+        android:textColor="#ffffffff"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/log_label"
         android:id="@+id/txtLogLabel"
-        android:layout_marginTop="140dp"
-        android:layout_below="@+id/txtName"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/txtAlert"
         android:textStyle="bold"
         android:layout_centerHorizontal="true" />
 
@@ -53,12 +75,24 @@
         android:textColor="#ffffffff"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/latestMsg_label"
+        android:id="@+id/latestMsg_label"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/txtLog"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true" />
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/latestMsg"
-        android:layout_below="@+id/txtLog"
+        android:layout_below="@+id/latestMsg_label"
         android:layout_marginTop="16dp"
+        android:textColor="#ffffffff"
         android:layout_alignRight="@+id/profilePicture"
         android:layout_alignEnd="@+id/profilePicture" />
 

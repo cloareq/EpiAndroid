@@ -18,6 +18,14 @@
     <string name="validate_button">Valider</string>
     <string name="log_label">Votre temps de log est de :</string>
     <string name="welcome_label">Bonjour</string>
+    <string name="latestMsg_label">Derniers messages</string>
+    <string name="log_alert">Vos alertes :</string>
+    <string name="label_alert">Vos alertes :</string>
+    <string name="txt_alerte">Vous n\'avez aucune alerte.</string>
+    <string name="previous_grade">Note précédente</string>
+    <string name="next_grade">Note suivante</string>
+    <string name="commentLabel">Commentaire :</string>
+    <string name="next_grade_msg">Vous n\'avez pas d\'autre note</string>
     <string-array name="menu_array">
         <item>Home</item>
         <item>Planning</item>
