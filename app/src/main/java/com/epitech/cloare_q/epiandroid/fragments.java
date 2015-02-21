@@ -111,6 +111,15 @@ public class fragments {
 
         private GradesBeans gb;
         private String token;
+        TextView note;
+        TextView title;
+        TextView year;
+        TextView comment;
+        Button prev;
+        Button next;
+        int gradePosition;
+        View gradeView;
+        List<Map<String, String>> grades;
 
         public FragGrades() {
         }
@@ -118,12 +127,61 @@ public class fragments {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            final View gradeView = inflater.inflate(R.layout.fragment_grades, container, false);
+            gradeView = inflater.inflate(R.layout.fragment_grades, container, false);
             Bundle arg = this.getArguments();
             token = arg.getString("token");
             gb = new GradesBeans(token);
-            List<Map<String, String>> grades = gb.getGrades();
+            grades = gb.getGrades();
+            gradePosition = grades.size() - 1;
+            prev = (Button) gradeView.findViewById(R.id.prev_button);
+            next = (Button) gradeView.findViewById(R.id.next_button);
+            fillGradePage();
+
+            prev.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    prevGrade();
+                }
+            });
+
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    nextGrade();
+                }
+            });
             return gradeView;
+        }
+
+        public void prevGrade() {
+            gradePosition -= 1;
+            if (gradePosition < 0) {
+                Toast.makeText(getActivity().getApplicationContext(), R.string.next_grade_msg, Toast.LENGTH_LONG).show();
+                gradePosition = 0;
+                return ;
+            }
+            fillGradePage();
+        }
+
+        public void nextGrade() {
+            gradePosition += 1;
+            if (gradePosition == grades.size()) {
+                Toast.makeText(getActivity().getApplicationContext(), R.string.next_grade_msg, Toast.LENGTH_LONG).show();
+                gradePosition -= 1;
+                return ;
+            }
+            fillGradePage();
+        }
+
+        public void fillGradePage() {
+            note = (TextView) gradeView.findViewById(R.id.final_note);
+            note.setText(grades.get(gradePosition).get("final_note"));
+            title = (TextView) gradeView.findViewById(R.id.title_grade);
+            title.setText(grades.get(gradePosition).get("title"));
+            year = (TextView) gradeView.findViewById(R.id.year);
+            year.setText(grades.get(gradePosition).get("scolaryear"));
+            comment = (TextView) gradeView.findViewById(R.id.commentContent);
+            comment.setText(grades.get(gradePosition).get("comment"));
         }
     }
 }
