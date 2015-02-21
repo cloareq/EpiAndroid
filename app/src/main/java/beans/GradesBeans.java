@@ -1,19 +1,22 @@
 package beans;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
+import java.lang.Object;
 
 import service.ApiGet;
-import service.api;
 
 public class GradesBeans {
     private String token;
     private String ret;
-    private String title;
-    private String finalGrade;
-    private String date;
+    List<Map<String,String>> grades;
 
     public GradesBeans(String t) {
         token = t;
@@ -22,7 +25,7 @@ public class GradesBeans {
         request.execute(url);
         try {
             ret = request.get();
-            System.out.println("REEEEEEET" + ret);
+            ret = ret.replace("notes", "\"notes\"");
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
@@ -32,11 +35,36 @@ public class GradesBeans {
     public void requestTitle() {
         try {
             JSONObject json = new JSONObject(ret);
-            JSONObject notes = json.getJSONObject("notes");
-            finalGrade = notes.getString("final_note");
-        } catch (JSONException e) {
+            JSONArray array = json.getJSONArray("notes");
+            parseGrades(array);
+        }
+        catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println("note = " + finalGrade);
     }
+
+    public void parseGrades(JSONArray array){
+        List<Map<String,String>> listGrades = new ArrayList<Map<String,String>>();
+        for (int i = 0; i<array.length(); i++) {
+            try {
+                String grades = array.getString(i);
+                grades = grades.replace("{", "");
+                Map<String, String> map = new HashMap<String, String>();
+                for (final String entry : grades.split(",")) {
+                    final String[] parts = entry.split(":");
+                    assert (parts.length == 2) : "Invalid entry: " + entry;
+                    try{
+                    map.put(parts[0].replace("\"", ""), String.valueOf(parts[1]));}
+                    catch (ArrayIndexOutOfBoundsException e){}
+                }
+                listGrades.add(map);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        grades = listGrades;
+    }
+
+    public List<Map<String,String>> getGrades() {
+        return grades;}
 }

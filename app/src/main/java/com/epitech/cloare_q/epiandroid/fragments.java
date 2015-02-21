@@ -13,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+import java.util.Map;
+
 import beans.HomeBeans;
 import beans.GradesBeans;
 
@@ -107,7 +110,7 @@ public class fragments {
 
     public static class FragGrades extends Fragment {
 
-        private GradesBeans hb;
+        private GradesBeans gb;
         private String token;
 
         public FragGrades() {
@@ -119,8 +122,8 @@ public class fragments {
             final View gradeView = inflater.inflate(R.layout.fragment_grades, container, false);
             Bundle arg = this.getArguments();
             token = arg.getString("token");
-            hb = new GradesBeans(token);
-
+            gb = new GradesBeans(token);
+            List<Map<String, String>> grades = gb.getGrades();
             return gradeView;
         }
     }
