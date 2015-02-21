@@ -27,7 +27,6 @@ public class fragments {
     public static class FragHome extends Fragment {
         private String token;
         private String logTime;
-        private String picture;
         private String name;
         TextView nameText;
         TextView logText;
@@ -51,7 +50,7 @@ public class fragments {
             logText = (TextView) homeView.findViewById(R.id.txtLog);
             Double time = Double.parseDouble(logTime);
             int finalLog = (int) Math.round(time);
-            logText.setText(Integer.toString(finalLog));
+            logText.setText(Integer.toString(finalLog) + " heure(s)");
 
 
             ppicture = (ImageView) homeView.findViewById(R.id.profilePicture);
