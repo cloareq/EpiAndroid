@@ -18,6 +18,7 @@ import java.util.Map;
 
 import beans.HomeBeans;
 import beans.GradesBeans;
+import beans.MessagesBeans;
 
 /**
  * Created by Dodo on 20/02/2015.
@@ -32,6 +33,7 @@ public class fragments {
         TextView logText;
         private HomeBeans hb;
         ImageView ppicture;
+        private MessagesBeans mb;
 
         public FragHome() {
         }
@@ -56,6 +58,9 @@ public class fragments {
             ppicture = (ImageView) homeView.findViewById(R.id.profilePicture);
             Bitmap p = hb.getImage();
             ppicture.setImageBitmap(p);
+
+            mb = new MessagesBeans(token);
+            mb.getListMsg();
 
             return homeView;
         }

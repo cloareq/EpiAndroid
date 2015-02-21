@@ -26,10 +26,10 @@ public class GradesBeans {
         try {
             ret = request.get();
             ret = ret.replace("notes", "\"notes\"");
+            requestTitle();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-        requestTitle();
     }
 
     public void requestTitle() {
