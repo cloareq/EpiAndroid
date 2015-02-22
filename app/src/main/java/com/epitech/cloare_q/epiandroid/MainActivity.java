@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
             return;
         }
         request.execute("login", login, "password", password, "login", "post");
-        //request.execute("login", "cloare_q", "password", "FXdndodw", "login", "post");
+
         String result = request.get();
 
         if (result.contains("error")) {
