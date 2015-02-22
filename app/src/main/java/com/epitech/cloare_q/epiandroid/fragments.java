@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +29,7 @@ import beans.GradesBeans;
 import beans.MessagesBeans;
 import beans.ModulesBeans;
 import beans.PlanningBeans;
+import beans.TokenBeans;
 
 public class fragments {
 
@@ -98,6 +100,8 @@ public class fragments {
         Button validate;
         EditText input_text;
         String text;
+        List<Map<String, String>> listToken = new ArrayList<>();
+        TokenBeans tkn;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -116,6 +120,29 @@ public class fragments {
 
                 }
             });
+            Calendar c = Calendar.getInstance();
+            c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+
+            // Print dates of the current week starting on Monday
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String firstDay = df.format(c.getTime());
+            c.add(Calendar.DATE, 6);
+            String lastDay = df.format(c.getTime());
+
+            Bundle arg = this.getArguments();
+            String token = arg.getString("token");
+            tkn = new TokenBeans(token);
+            tkn.requestToken(firstDay, lastDay);
+
+            listToken = tkn.getListToken();
+
+            System.out.println("LIST TOKEN =>" + listToken);
+
+            //sendtokenrequest
+
+        //tkn.validateToken(String t, Map<String, String> event, String token_validation) {
+
+
             return tokenView;
         }
 
