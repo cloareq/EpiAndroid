@@ -173,7 +173,14 @@ public class fragments {
 
         public void sendToken() {
             String fieldTok = ((EditText) tokenView.findViewById(R.id.editToken)).getText().toString();
-            tkn.validateToken(token, listToken.get(tokenIndex), fieldTok);
+            System.out.println("fieldtoken " + fieldTok);
+            System.out.println("length " + fieldTok.length());
+
+            try{
+            tkn.validateToken(token, listToken.get(tokenIndex), fieldTok);}
+            catch (java.lang.ArrayIndexOutOfBoundsException e) {
+                e.printStackTrace();
+            }
         }
 
         public void prevToken () {
@@ -285,12 +292,11 @@ public class fragments {
             PlanningBeans pb = new PlanningBeans(token);
             pb.requestPlanning(firstDay, lastDay);
             planning = pb.getListPlanning();
-            System.out.println("PLAANING ___ > " + planning);
+            if (planning != null){
             listPlanning = (ListView) planningView.findViewById(R.id.planningList);
             SimpleAdapter mSchedule = new SimpleAdapter (getActivity().getApplicationContext(), planning, R.layout.simple_line_planning,
                     new String[] {"start", "end", "acti_title", "titlemodule"}, new int[] {R.id.start_date, R.id.end_date, R.id.titleCourse, R.id.planningModuleTitle});
-
-            listPlanning.setAdapter(mSchedule);
+            listPlanning.setAdapter(mSchedule);}
         }
     }
 
