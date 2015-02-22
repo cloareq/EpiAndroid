@@ -120,6 +120,7 @@ public class fragments {
         ListView listPlanning;
         Button prev;
         Button next;
+        Calendar c = Calendar.getInstance();
 
         public FragPlanning() {
         }
@@ -131,8 +132,6 @@ public class fragments {
             planningView = inflater.inflate(R.layout.fragment_planning, container, false);
 
             // Get calendar set to current date and time
-
-            Calendar c = Calendar.getInstance();
 
             // Set the calendar to monday of the current week
             c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
@@ -147,9 +146,7 @@ public class fragments {
             Bundle arg = this.getArguments();
             token = arg.getString("token");
 
-            PlanningBeans pb = new PlanningBeans(token);
-            pb.requestPlanning(firstDay, lastDay);
-            planning = pb.getListPlanning();
+
             prev = (Button) planningView.findViewById(R.id.prev_week);
             next = (Button) planningView.findViewById(R.id.next_week);
 
@@ -167,19 +164,35 @@ public class fragments {
                 }
             });
 
-            fillPlanning();
+            fillPlanning(firstDay, lastDay);
 
             return planningView;
         }
         public void prevWeek() {
-            Toast.makeText(getActivity().getApplicationContext(), "Ca gaze avec ta semaine precedente ?", Toast.LENGTH_LONG).show();
+
+            // Print dates of the current week starting on Monday
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            c.add(Calendar.DATE, -13);
+            String firstDay = df.format(c.getTime());
+            c.add(Calendar.DATE, 6);
+            String lastDay = df.format(c.getTime());
+            fillPlanning(firstDay, lastDay);
         }
 
         public void nextWeek() {
-            Toast.makeText(getActivity().getApplicationContext(), "Ca gaze avec ta semaine suivante ?", Toast.LENGTH_LONG).show();
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            c.add(Calendar.DATE, 1);
+            String firstDay = df.format(c.getTime());
+            c.add(Calendar.DATE, 6);
+            String lastDay = df.format(c.getTime());
+            fillPlanning(firstDay, lastDay);
         }
 
-        public void fillPlanning (){
+        public void fillPlanning (String firstDay, String lastDay){
+            PlanningBeans pb = new PlanningBeans(token);
+            pb.requestPlanning(firstDay, lastDay);
+            planning = pb.getListPlanning();
+            System.out.println("PLAANING ___ > " + planning);
             listPlanning = (ListView) planningView.findViewById(R.id.planningList);
             SimpleAdapter mSchedule = new SimpleAdapter (getActivity().getApplicationContext(), planning, R.layout.simple_line_planning,
                     new String[] {"start", "end", "title", "titlemodule"}, new int[] {R.id.start_date, R.id.end_date, R.id.titleCourse, R.id.planningModuleTitle});
