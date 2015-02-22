@@ -30,6 +30,7 @@ import beans.GradesBeans;
 import beans.MessagesBeans;
 import beans.ModulesBeans;
 import beans.PlanningBeans;
+import beans.ProjectsBeans;
 import beans.TokenBeans;
 
 public class fragments {
@@ -91,6 +92,9 @@ public class fragments {
 
             inputAlert = (TextView) homeView.findViewById(R.id.txtAlert);
             inputAlert.setText(alerts);
+
+            ProjectsBeans pb = new ProjectsBeans(token);
+            System.out.println("projects - > " + pb.getListProjects());
 
             return homeView;
         }
