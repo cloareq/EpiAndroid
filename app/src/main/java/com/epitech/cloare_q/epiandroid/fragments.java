@@ -198,7 +198,11 @@ public class fragments {
 
         public void fillTokenPage() {
             tokenEvent = (TextView) tokenView.findViewById(R.id.event);
-            tokenEvent.setText(listToken.get(tokenIndex).get("acti_title"));
+            if (listToken.size() > 0) {
+                tokenEvent.setText(listToken.get(tokenIndex).get("acti_title"));
+            } else {
+                Toast.makeText(getActivity().getApplicationContext(), R.string.no_token_msg, Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -396,6 +400,36 @@ public class fragments {
             listModules.setAdapter(mSchedule);
 
             return modulesView;
+        }
+    }
+
+    public static class FragProjects extends Fragment {
+
+        private ProjectsBeans prb;
+        private String token;
+        List<Map<String, String>> projects;
+        ListView listProjects;
+
+        public FragProjects() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+
+            final View projectView = inflater.inflate(R.layout.fragment_projects, container, false);
+            Bundle arg = this.getArguments();
+            token = arg.getString("token");
+            prb = new ProjectsBeans(token);
+            projects = prb.getListProjects();
+
+            listProjects = (ListView) projectView.findViewById(R.id.listProjects);
+            SimpleAdapter mSchedule = new SimpleAdapter (getActivity().getApplicationContext(), projects, R.layout.simple_line_projects,
+                    new String[] {"title_module", "acti_title", "end_acti"}, new int[] {R.id.title_module, R.id.titleProject, R.id.end_project});
+
+            listProjects.setAdapter(mSchedule);
+
+            return projectView;
         }
     }
 }

@@ -101,6 +101,10 @@ public class home extends Activity {
                 fragment = new fragments.FragModules();
                 fragment.setArguments(args);
                 break;
+            case 5:
+                fragment = new fragments.FragProjects();
+                fragment.setArguments(args);
+                break;
           }
 
         // Insert the fragment by replacing any existing fragment
