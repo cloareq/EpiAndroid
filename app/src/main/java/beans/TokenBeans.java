@@ -45,7 +45,7 @@ public class TokenBeans {
             try {
                 obj = array.getJSONObject(i);
                 Map<String, String> map = new HashMap<String, String>();
-                if (!obj.get("allow_token").toString().equals("false")){
+                if (!obj.get("allow_token").toString().equals("false") && !obj.get("register_student").toString().equals("false")) {
                     map.put("scolaryear", obj.get("scolaryear").toString().replaceAll("\\<.*?>", ""));
                     map.put("codemodule", obj.get("codemodule").toString().replaceAll("\\<.*?>", ""));
                     map.put("codeinstance", obj.get("codeinstance").toString().replaceAll("\\<.*?>", ""));
