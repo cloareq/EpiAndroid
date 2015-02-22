@@ -124,16 +124,9 @@ public class fragments {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
-            //Get today's date
-           // Locale locale = Locale.getDefault();
-            //Date today = new Date();
-            //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            //String dat = dateFormat.format(today);
-
-            // Get calendar set to current date and time
             Calendar c = Calendar.getInstance();
 
-        // Set the calendar to monday of the current week
+            // Set the calendar to monday of the current week
             c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 
             // Print dates of the current week starting on Monday

@@ -9,14 +9,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
-import java.lang.Object;
 
 import service.ApiGet;
 
 public class GradesBeans {
     private String token;
     private String ret;
-    List<Map<String,String>> grades;
+    List<Map<String,String>> grades = new ArrayList<>();
 
     public GradesBeans(String t) {
         token = t;
@@ -42,27 +41,22 @@ public class GradesBeans {
             e.printStackTrace();
         }
     }
-
-    public void parseGrades(JSONArray array){
-        List<Map<String,String>> listGrades = new ArrayList<Map<String,String>>();
-        for (int i = 0; i<array.length(); i++) {
+    public void parseGrades(JSONArray array) {
+        for (int i = 0; i < array.length(); i++) {
+            JSONObject obj;
             try {
-                String grades = array.getString(i);
-                grades = grades.replace("{", "");
+                obj = array.getJSONObject(i);
                 Map<String, String> map = new HashMap<String, String>();
-                for (final String entry : grades.split(",")) {
-                    final String[] parts = entry.split(":");
-                    assert (parts.length == 2) : "Invalid entry: " + entry;
-                    try{
-                    map.put(parts[0].replace("\"", ""), String.valueOf(parts[1]));}
-                    catch (ArrayIndexOutOfBoundsException e){}
-                }
-                listGrades.add(map);
-            } catch (JSONException e) {
+                map.put("final_note", obj.get("final_note").toString());
+                map.put("title", obj.get("title").toString());
+                map.put("scolaryear", obj.get("scolaryear").toString());
+                map.put("comment", obj.get("comment").toString());
+                grades.add(map);
+
+            } catch (JSONException e ) {
                 e.printStackTrace();
             }
         }
-        grades = listGrades;
     }
 
     public List<Map<String,String>> getGrades() {
