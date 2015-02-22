@@ -30,6 +30,8 @@
     <string name="next_planning"></string>
     <string name="previous_week">Semaine préc.</string>
     <string name="next_week">Semaine suiv.</string>
+    <string name="enter_login">Enter your Login</string>
+    <string name="enter_password">Enter Password (Unix)</string>
     <string-array name="menu_array">
         <item>Home</item>
         <item>Planning</item>
