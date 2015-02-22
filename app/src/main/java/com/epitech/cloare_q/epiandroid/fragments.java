@@ -81,6 +81,12 @@ public class fragments {
 
             listAlerts = hb.getListAlerts();
 
+            String alerts = "";
+
+            for (int i = 0;i<listAlerts.size(); i++)
+            {alerts += listAlerts.get(i).get("title");}
+
+
             return homeView;
         }
     }
