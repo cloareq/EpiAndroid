@@ -37,6 +37,7 @@ public class fragments {
         private String name;
         TextView nameText;
         TextView logText;
+        TextView inputAlert;
         private HomeBeans hb;
         ImageView ppicture;
         private MessagesBeans mb;
@@ -44,7 +45,6 @@ public class fragments {
         List<Map<String, String>> listAlerts;
 
         ListView listElem;
-        ListView listAlr;
 
         public FragHome() {
         }
@@ -86,6 +86,8 @@ public class fragments {
             for (int i = 0;i<listAlerts.size(); i++)
             {alerts += listAlerts.get(i).get("title");}
 
+            inputAlert = (TextView) homeView.findViewById(R.id.txtAlert);
+            inputAlert.setText(alerts);
 
             return homeView;
         }
