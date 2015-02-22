@@ -41,7 +41,10 @@ public class fragments {
         ImageView ppicture;
         private MessagesBeans mb;
         List<Map<String, String>> listMsg;
+        List<Map<String, String>> listAlerts;
+
         ListView listElem;
+        ListView listAlr;
 
         public FragHome() {
         }
@@ -75,6 +78,8 @@ public class fragments {
                     new String[] {"date", "title", "content"}, new int[] {R.id.dateMsg, R.id.titleMsg, R.id.contentMsg});
 
             listElem.setAdapter(mSchedule);
+
+            listAlerts = hb.getListAlerts();
 
             return homeView;
         }
