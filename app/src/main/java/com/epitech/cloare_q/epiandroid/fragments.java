@@ -116,6 +116,10 @@ public class fragments {
     public static class FragPlanning extends Fragment {
         private String token;
         List<Map<String,String>> planning;
+        View planningView;
+        ListView listPlanning;
+        Button prev;
+        Button next;
 
         public FragPlanning() {
         }
@@ -123,6 +127,10 @@ public class fragments {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
+            planningView = inflater.inflate(R.layout.fragment_planning, container, false);
+
+            // Get calendar set to current date and time
 
             Calendar c = Calendar.getInstance();
 
@@ -142,7 +150,41 @@ public class fragments {
             PlanningBeans pb = new PlanningBeans(token);
             pb.requestPlanning(firstDay, lastDay);
             planning = pb.getListPlanning();
-            return inflater.inflate(R.layout.fragment_planning, container, false);
+            prev = (Button) planningView.findViewById(R.id.prev_week);
+            next = (Button) planningView.findViewById(R.id.next_week);
+
+            prev.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    prevWeek();
+                }
+            });
+
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    nextWeek();
+                }
+            });
+
+            fillPlanning();
+
+            return planningView;
+        }
+        public void prevWeek() {
+            Toast.makeText(getActivity().getApplicationContext(), "Ca gaze avec ta semaine precedente ?", Toast.LENGTH_LONG).show();
+        }
+
+        public void nextWeek() {
+            Toast.makeText(getActivity().getApplicationContext(), "Ca gaze avec ta semaine suivante ?", Toast.LENGTH_LONG).show();
+        }
+
+        public void fillPlanning (){
+            listPlanning = (ListView) planningView.findViewById(R.id.planningList);
+            SimpleAdapter mSchedule = new SimpleAdapter (getActivity().getApplicationContext(), planning, R.layout.simple_line_planning,
+                    new String[] {"start", "end", "title", "titlemodule"}, new int[] {R.id.start_date, R.id.end_date, R.id.titleCourse, R.id.planningModuleTitle});
+
+            listPlanning.setAdapter(mSchedule);
         }
     }
 
