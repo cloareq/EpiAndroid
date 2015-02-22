@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -124,18 +125,30 @@ public class fragments {
                                  Bundle savedInstanceState) {
 
             //Get today's date
-            Locale locale = Locale.getDefault();
-            Date today = new Date();
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String dat = dateFormat.format(today);
+           // Locale locale = Locale.getDefault();
+            //Date today = new Date();
+            //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            //String dat = dateFormat.format(today);
+
+            // Get calendar set to current date and time
+            Calendar c = Calendar.getInstance();
+
+        // Set the calendar to monday of the current week
+            c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+
+            // Print dates of the current week starting on Monday
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String firstDay = df.format(c.getTime());
+            c.add(Calendar.DATE, 6);
+            String lastDay = df.format(c.getTime());
+
 
             Bundle arg = this.getArguments();
             token = arg.getString("token");
 
             PlanningBeans pb = new PlanningBeans(token);
-            pb.requestPlanning("2015-02-21", "2015-02-21");
+            pb.requestPlanning(firstDay, lastDay);
             planning = pb.getListPlanning();
-            System.out.println("PLAAAANING ->" + planning);
             return inflater.inflate(R.layout.fragment_planning, container, false);
         }
     }
