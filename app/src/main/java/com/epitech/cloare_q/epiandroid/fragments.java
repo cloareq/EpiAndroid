@@ -3,6 +3,7 @@ package com.epitech.cloare_q.epiandroid;
 import android.app.Fragment;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -289,6 +290,7 @@ public class fragments {
             year.setText(grades.get(gradePosition).get("scolaryear"));
             comment = (TextView) gradeView.findViewById(R.id.commentContent);
             comment.setText(grades.get(gradePosition).get("comment"));
+            comment.setMovementMethod(new ScrollingMovementMethod());
         }
     }
 

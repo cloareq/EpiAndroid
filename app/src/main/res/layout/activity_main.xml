@@ -28,7 +28,8 @@
             android:id="@+id/loginLogin"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your Login"
+            android:hint="@string/enter_login"
+            android:textColorHint="#fff"
             android:textColor="#ffa0ba5f"
             android:inputType="text" />
 
@@ -43,7 +44,8 @@
             android:id="@+id/loginPassword"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Password (Unix)"
+            android:hint="@string/enter_password"
+            android:textColorHint="#fff"
             android:textColor="#ffa0ba5f"
             android:inputType="textPassword" />
 

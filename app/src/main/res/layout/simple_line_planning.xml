@@ -6,15 +6,6 @@
     android:minHeight="150dp"
     >
 
-    <Button
-        android:id="@+id/img"
-        android:text="@string/enter_token"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:padding="10px"
-        />
-
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="fill_parent"
@@ -30,7 +21,7 @@
             android:textSize="15dp"
             android:text="Title Module"
             android:textStyle="bold"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             />
 
         <TextView android:id="@+id/titleCourse"
@@ -39,7 +30,7 @@
             android:textSize="20dp"
             android:text="Title Course"
             android:textStyle="bold"
-            android:textColor="#000000"
+            android:textColor="#ffa0ba5f"
             />
 
         <TextView android:id="@+id/start_date"
@@ -47,7 +38,7 @@
             android:layout_height="fill_parent"
             android:textSize="15dp"
             android:text="date Start"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             />
 
         <TextView android:id="@+id/end_date"
@@ -55,7 +46,7 @@
             android:layout_height="fill_parent"
             android:textSize="15dp"
             android:text="date End"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             />
 
     </LinearLayout>
