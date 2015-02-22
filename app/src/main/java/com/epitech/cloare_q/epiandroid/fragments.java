@@ -178,7 +178,7 @@ public class fragments {
 
             try{
             tkn.validateToken(token, listToken.get(tokenIndex), fieldTok);}
-            catch (java.lang.ArrayIndexOutOfBoundsException e) {
+            catch (IndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
         }
