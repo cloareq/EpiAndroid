@@ -195,7 +195,7 @@ public class fragments {
             System.out.println("PLAANING ___ > " + planning);
             listPlanning = (ListView) planningView.findViewById(R.id.planningList);
             SimpleAdapter mSchedule = new SimpleAdapter (getActivity().getApplicationContext(), planning, R.layout.simple_line_planning,
-                    new String[] {"start", "end", "title", "titlemodule"}, new int[] {R.id.start_date, R.id.end_date, R.id.titleCourse, R.id.planningModuleTitle});
+                    new String[] {"start", "end", "acti_title", "titlemodule"}, new int[] {R.id.start_date, R.id.end_date, R.id.titleCourse, R.id.planningModuleTitle});
 
             listPlanning.setAdapter(mSchedule);
         }

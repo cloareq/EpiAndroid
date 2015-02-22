@@ -3,6 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:minHeight="150dp"
     >
 
     <Button
@@ -19,14 +20,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:paddingLeft="10px"
+        android:paddingLeft="10dp"
         android:layout_weight="1"
         >
 
         <TextView android:id="@+id/planningModuleTitle"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:textSize="10dp"
+            android:textSize="15dp"
             android:text="Title Module"
             android:textStyle="bold"
             android:textColor="#000000"
@@ -35,7 +36,7 @@
         <TextView android:id="@+id/titleCourse"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:textSize="12dp"
+            android:textSize="20dp"
             android:text="Title Course"
             android:textStyle="bold"
             android:textColor="#000000"
@@ -44,7 +45,7 @@
         <TextView android:id="@+id/start_date"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:textSize="9dp"
+            android:textSize="15dp"
             android:text="date Start"
             android:textColor="#000000"
             />
@@ -52,7 +53,7 @@
         <TextView android:id="@+id/end_date"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:textSize="9dp"
+            android:textSize="15dp"
             android:text="date End"
             android:textColor="#000000"
             />
