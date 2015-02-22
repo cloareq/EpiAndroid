@@ -55,6 +55,5 @@ public class MessagesBeans {
     }
 
     public List<Map<String, String>> getListMsg() {
-        System.out.println("list ---->" + listMsg);
         return listMsg;}
 }
