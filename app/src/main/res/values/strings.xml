@@ -34,6 +34,8 @@
     <string name="enter_password">Enter Password (Unix)</string>
     <string name="next_token_msg">Pas d\'autre évènement</string>
     <string name="no_token_msg">Vous n\'avez pas de token à valider.</string>
+    <string name="previous_token">Event préc.</string>
+    <string name="next_event">Event suiv.</string>
     <string-array name="menu_array">
         <item>Home</item>
         <item>Planning</item>
