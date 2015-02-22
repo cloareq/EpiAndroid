@@ -27,14 +27,14 @@ public class MainActivity extends Activity {
         String login = ((EditText)findViewById(R.id.loginLogin)).getText().toString();
         String password = ((EditText)findViewById(R.id.loginPassword)).getText().toString();
 
-       // if (login.equals("") || password.equals("")) {
-        //    Toast.makeText(MainActivity.this,
-         //           R.string.email_or_password_empty,
-          //          Toast.LENGTH_SHORT).show();
-          //  return;
-        //}
-        //request.execute("login", login, "password", password, "login", "post");
-        request.execute("login", "cloare_q", "password", "FXdndodw", "login", "post");
+        if (login.equals("") || password.equals("")) {
+            Toast.makeText(MainActivity.this,
+                    R.string.email_or_password_empty,
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+        request.execute("login", login, "password", password, "login", "post");
+        //request.execute("login", "cloare_q", "password", "FXdndodw", "login", "post");
         String result = request.get();
 
         if (result.contains("error")) {
