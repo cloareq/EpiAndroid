@@ -16,7 +16,7 @@ import service.ApiGet;
 public class MessagesBeans {
     private String token;
     private String ret;
-    private List<Map<String, String>> listMsg = new ArrayList<Map<String, String>>();
+    private List<Map<String, String>> listMsg = new ArrayList<>();
 
     public MessagesBeans(String t) {
         token = t;
@@ -39,13 +39,13 @@ public class MessagesBeans {
             e.printStackTrace();
         }
         for (int i = 0; i < array.length(); i++) {
-            JSONObject obj = null;
+            JSONObject obj;
             try {
                 obj = array.getJSONObject(i);
                 Map<String, String> map = new HashMap<String, String>();
-                map.put("title", obj.get("title").toString());
-                map.put("content", obj.get("content").toString());
-                map.put("date", obj.get("date").toString());
+                map.put("title", obj.get("title").toString().replaceAll("\\<.*?>", ""));
+                map.put("content", obj.get("content").toString().replaceAll("\\<.*?>", ""));
+                map.put("date", obj.get("date").toString().replaceAll("\\<.*?>", ""));
                 listMsg.add(map);
             }
             catch (JSONException e) {

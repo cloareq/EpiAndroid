@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,9 +22,6 @@ import beans.HomeBeans;
 import beans.GradesBeans;
 import beans.MessagesBeans;
 
-/**
- * Created by Dodo on 20/02/2015.
- */
 public class fragments {
 
     public static class FragHome extends Fragment {
@@ -34,6 +33,8 @@ public class fragments {
         private HomeBeans hb;
         ImageView ppicture;
         private MessagesBeans mb;
+        List<Map<String, String>> listMsg;
+        ListView listElem;
 
         public FragHome() {
         }
@@ -60,7 +61,13 @@ public class fragments {
             ppicture.setImageBitmap(p);
 
             mb = new MessagesBeans(token);
-            mb.getListMsg();
+            listMsg = mb.getListMsg();
+
+            listElem = (ListView) homeView.findViewById(R.id.latestMsg);
+            SimpleAdapter mSchedule = new SimpleAdapter (getActivity().getApplicationContext(), listMsg, R.layout.list_single_line,
+                    new String[] {"date", "title", "content"}, new int[] {R.id.dateMsg, R.id.titleMsg, R.id.contentMsg});
+
+            listElem.setAdapter(mSchedule);
 
             return homeView;
         }
