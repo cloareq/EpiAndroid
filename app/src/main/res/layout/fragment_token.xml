@@ -1,24 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:background="#ff2c2c2c" android:layout_height="match_parent">
+
+    <Button
+        android:textColor="#fff"
+        android:background="#ffe6a54d"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/previous_grade"
+        android:id="@+id/prev_button"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:textColor="#fff"
+        android:background="#ffe6a54d"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next_grade"
+        android:id="@+id/next_button"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:textColor="#ffa0ba5f"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Event"
+        android:id="@+id/event"
+        android:layout_below="@+id/prev_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="128dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/text_token"
+        android:id="@+id/editToken"
         android:hint="@string/enter_token"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="123dp" />
+        android:textColorHint="#fff"
+        android:textColor="#fff"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
+        android:textColor="#fff"
+        android:background="#ffe6a54d"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/validate_button"
-        android:id="@+id/button_token"
-        android:layout_below="@+id/text_token"
+        android:id="@+id/valid_token"
+        android:layout_below="@+id/editToken"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="49dp" />
-
+        android:layout_marginTop="67dp" />
 
 </RelativeLayout>

@@ -98,29 +98,26 @@ public class fragments {
 
     public static class FragToken extends Fragment {
 
-        Button validate;
-        EditText input_text;
-        String text;
         List<Map<String, String>> listToken = new ArrayList<>();
         TokenBeans tkn;
+        Button prev;
+        Button next;
+        Button validateToken;
+        View tokenView;
+        int tokenIndex;
+        TextView tokenEvent;
+        String token;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            final View tokenView = inflater.inflate(R.layout.fragment_token, container, false);
-            validate = (Button) tokenView.findViewById(R.id.button_token);
-            input_text = (EditText) tokenView.findViewById(R.id.text_token);
-            validate.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View view)
-                {
-                    Log.d("Test", "onClickListener ist gestartet");
-                    Toast.makeText(getActivity().getApplicationContext(), "Test", Toast.LENGTH_LONG).show();
-                    saveInString();
+            tokenView = inflater.inflate(R.layout.fragment_token, container, false);
+            prev = (Button) tokenView.findViewById(R.id.prev_button);
+            next = (Button) tokenView.findViewById(R.id.next_button);
+            validateToken = (Button) tokenView.findViewById(R.id.valid_token);
 
-                }
-            });
+
+
             Calendar c = Calendar.getInstance();
             c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 
@@ -131,26 +128,73 @@ public class fragments {
             String lastDay = df.format(c.getTime());
 
             Bundle arg = this.getArguments();
-            String token = arg.getString("token");
+            token = arg.getString("token");
             tkn = new TokenBeans(token);
             tkn.requestToken(firstDay, lastDay);
 
             listToken = tkn.getListToken();
+            System.out.println("LIST ====> " + listToken);
+            tokenIndex = listToken.size() - 1;
+            fillTokenPage();
 
             System.out.println("LIST TOKEN =>" + listToken);
 
+            prev.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    prevToken();
+                }
+            });
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    nextToken();
+                }
+            });
+
+            validateToken.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    sendToken();
+                }
+            });
+
             //sendtokenrequest
 
-        //tkn.validateToken(String t, Map<String, String> event, String token_validation) {
+            //tkn.validateToken(token, Map<String, String> event, String token_validation) {
 
 
             return tokenView;
         }
 
-        public void saveInString() {
-            Toast.makeText(getActivity().getApplicationContext(), "copie dans chaine", Toast.LENGTH_LONG).show();
-            text = input_text.getText().toString();
-            Toast.makeText(getActivity().getApplicationContext(), "fini", Toast.LENGTH_SHORT).show();
+        public void sendToken() {
+            String fieldTok = ((EditText) tokenView.findViewById(R.id.editToken)).getText().toString();
+            tkn.validateToken(token, listToken.get(tokenIndex), fieldTok);
+        }
+
+        public void prevToken () {
+            tokenIndex -= 1;
+            if (tokenIndex < 0) {
+                Toast.makeText(getActivity().getApplicationContext(), R.string.next_token_msg, Toast.LENGTH_LONG).show();
+                tokenIndex = 0;
+                return ;
+            }
+            fillTokenPage();
+        }
+
+        public void nextToken() {
+            tokenIndex += 1;
+            if (tokenIndex == listToken.size()) {
+                Toast.makeText(getActivity().getApplicationContext(), R.string.next_token_msg, Toast.LENGTH_LONG).show();
+                tokenIndex -= 1;
+                return ;
+            }
+            fillTokenPage();
+        }
+
+        public void fillTokenPage() {
+            tokenEvent = (TextView) tokenView.findViewById(R.id.event);
+            tokenEvent.setText(listToken.get(tokenIndex).get("acti_title"));
         }
     }
 
