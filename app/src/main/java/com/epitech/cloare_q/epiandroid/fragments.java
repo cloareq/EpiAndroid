@@ -21,6 +21,7 @@ import java.util.Map;
 import beans.HomeBeans;
 import beans.GradesBeans;
 import beans.MessagesBeans;
+import beans.ModulesBeans;
 
 public class fragments {
 
@@ -194,6 +195,36 @@ public class fragments {
             year.setText(grades.get(gradePosition).get("scolaryear"));
             comment = (TextView) gradeView.findViewById(R.id.commentContent);
             comment.setText(grades.get(gradePosition).get("comment"));
+        }
+    }
+
+    public static class FragModules extends Fragment {
+
+        private ModulesBeans mb;
+        private String token;
+        List<Map<String, String>> modules;
+        ListView listModules;
+
+        public FragModules() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+
+            final View modulesView = inflater.inflate(R.layout.fragment_modules, container, false);
+            Bundle arg = this.getArguments();
+            token = arg.getString("token");
+            mb = new ModulesBeans(token);
+            modules = mb.getModules();
+
+            listModules = (ListView) modulesView.findViewById(R.id.listModules);
+            SimpleAdapter mSchedule = new SimpleAdapter (getActivity().getApplicationContext(), modules, R.layout.simple_line_module,
+                    new String[] {"semester", "title", "grade"}, new int[] {R.id.semester, R.id.titleModule, R.id.gradeModule});
+
+            listModules.setAdapter(mSchedule);
+
+            return modulesView;
         }
     }
 }
