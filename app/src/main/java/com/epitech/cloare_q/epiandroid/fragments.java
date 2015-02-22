@@ -15,13 +15,18 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import beans.HomeBeans;
 import beans.GradesBeans;
 import beans.MessagesBeans;
 import beans.ModulesBeans;
+import beans.PlanningBeans;
 
 public class fragments {
 
@@ -74,19 +79,6 @@ public class fragments {
         }
     }
 
-    public static class FragPlanning extends Fragment {
-
-        public FragPlanning() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-
-            return inflater.inflate(R.layout.fragment_planning, container, false);
-        }
-    }
-
     public static class FragToken extends Fragment {
 
         Button validate;
@@ -117,6 +109,34 @@ public class fragments {
             Toast.makeText(getActivity().getApplicationContext(), "copie dans chaine", Toast.LENGTH_LONG).show();
             text = input_text.getText().toString();
             Toast.makeText(getActivity().getApplicationContext(), "fini", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static class FragPlanning extends Fragment {
+        private String token;
+        List<Map<String,String>> planning;
+
+        public FragPlanning() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+
+            //Get today's date
+            Locale locale = Locale.getDefault();
+            Date today = new Date();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String dat = dateFormat.format(today);
+
+            Bundle arg = this.getArguments();
+            token = arg.getString("token");
+
+            PlanningBeans pb = new PlanningBeans(token);
+            pb.requestPlanning("2015-02-21", "2015-02-21");
+            planning = pb.getListPlanning();
+            System.out.println("PLAAAANING ->" + planning);
+            return inflater.inflate(R.layout.fragment_planning, container, false);
         }
     }
 

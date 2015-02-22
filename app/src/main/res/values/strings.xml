@@ -26,6 +26,8 @@
     <string name="next_grade">Note suivante</string>
     <string name="commentLabel">Commentaire :</string>
     <string name="next_grade_msg">Vous n\'avez pas d\'autre note</string>
+    <string name="previous_planning"></string>
+    <string name="next_planning"></string>
     <string-array name="menu_array">
         <item>Home</item>
         <item>Planning</item>
